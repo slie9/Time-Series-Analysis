@@ -45,18 +45,17 @@ With this data we can see that the maximum values for the standard variables hav
 
 Figure 1 Time Series Plots of lnTotalPriv and lnWeeklyEarn
 
-![Chart, line chart Description automatically generated](media/c3ba3ee986f91f7766ab9ff1451f16f2.png)
+<img src = Images/lntsline.png>
 
 On the left, this time series plot shows the log transform of total private employment in Orlando-Kissimmee-Sanford area. We can see here there is a general an upwards trend for the most part except in early 1990s, early-mid 2000s, 2010\~, and in 2020. On the right is the log transform of the weekly earnings, it does not start until a bit before 2010. There is a decrease before 2010 before it spikes back up, and down throughout till about 2014. From there, the data has an increase and stays balanced until 2020, where it spikes majorly.
 
 Figure 2 ac_pac_lntotalpriv
 
-![Chart Description automatically generated](media/c844d79cbbabc6e12982eb781250216d.png)
+<img src = Images/ac_pac_total.png>
 
 Figure 3 ac_pac_lnweekly
 
-![Chart Description automatically generated](media/eca04728c5b7f371e8dee5a35cd1a0e7.png)
-
+<img src = Images/ac_pac_weekly.png>
 The AC charts start high and decreases steadily. This suggests that in the data there is an autoregressive term. The PAC has quite an alternating pattern with positive and negative values that are not significant. It seems to have a pattern in the trends, possibly a seasonal trend.
 
 ## Model estimation and selection
@@ -99,19 +98,19 @@ Table 5 Rolling Windows
 
 Figure 4 Error Distribution
 
-![Chart, histogram Description automatically generated](media/d29e9a57e776d962b941dff4cc6a5f10.png)
+<img src = Images/Error_Disc.png>
 
 This is the error distribution.
 
 Figure 5 RW 95%
 
-![Diagram Description automatically generated with medium confidence](media/53e8f0ef7f4cc674c235f05ad1a5c92a.png)
+<img src = Images/TotalPriv_RW_95.png>
 
 This is the rolling window forecast with 95% intervals for normal and empirical.
 
 Figure 6 RW 90% and 99%
 
-![Diagram Description automatically generated](media/62d654bc1139164cafa5eed353269ddc.png)
+<img src = Images/TotalPriv_FW_90_99.png>
 
 This is the rolling windows forecast with 90% and 95% intervals for empirical and normal.
 
