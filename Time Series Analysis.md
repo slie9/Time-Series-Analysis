@@ -8,55 +8,18 @@ STA4853.01I&T Time Series Analysis
 
 # 
 
-# 
 
-# 
 
-# Abstract
+## Abstract
 
 In this project for Time Series Analysis for Business, Data Science, & Economics, I used data from St Louis Federal Reserve Economic Data (FRED) and am using available data for the Orlando-Kissimmee-Sanford area (MSA) in Florida. Using Stata this project allows application with time series tools to forecast the March non-seasonally adjusted estimates for the number of total employment for private employers and their average weekly earnings. This project includes the use of vselect and rolling windows for model selection and a forecast of the best model selection.
 
-Table of Contents
 
-[Abstract](#abstract)
-
-[Introduction](#_Toc101532950)
-
-[Data](#_Toc101532951)
-
-[Model estimation and selection](#_Toc101532952)
-
-[Final Results](#_Toc101532953)
-
-[Conclusion](#_Toc101532954)
-
-[Table 1 Summary Statistics for All Standard Variables](#_Toc101532938)
-
-[Table 2 Summary Statistics for All Log Transformed Variables](#_Toc101532939)
-
-[Table 3 LOOCV of Models](#_Toc101532940)
-
-[Table 4 Vselect](#_Toc101532941)
-
-[Table 5 Rolling Windows](#_Toc101532942)
-
-[Figure 1 Time Series Plots of lnTotalPriv and lnWeeklyEarn](#_Toc101532943)
-
-[Figure 2 ac_pac_lntotalpriv](#_Toc101532944)
-
-[Figure 3 ac_pac_lnweekly](#_Toc101532945)
-
-[Figure 4 Error Distribution](#_Toc101532946)
-
-[Figure 5 RW 95%](#_Toc101532947)
-
-[Figure 6 RW 90% and 99%](#_Toc101532948)
-
-Introduction
+## Introduction
 
 With this final project, we take what we learned in class about time series modeling and forecasting to predict two variables for the Orlando-Kissimmee-Sanford area. These are, the total private employment and average weekly earnings for this area. We are to forecast the March non-seasonally adjusted estimates in this project. This project includes summary statistics, auto correlograms, partial autocorrelograms , tsline, vselect, rolling windows, and forecast of best model.
 
-Data
+## Data
 
 **Summary Statistics**
 
@@ -96,7 +59,7 @@ Figure 3 ac_pac_lnweekly
 
 The AC charts start high and decreases steadily. This suggests that in the data there is an autoregressive term. The PAC has quite an alternating pattern with positive and negative values that are not significant. It seems to have a pattern in the trends, possibly a seasonal trend.
 
-Model estimation and selection
+## Model estimation and selection
 
 To model the total private employment and weekly earnings in Orlando-Kissimmee-Sanford area, I had used vselect to generated lags 1/12 for lnTotalPriv and lnWeeklyEarn. Below are the reasonable set of models from vselect along with the LOOCV of each. The models with 2 – 6 predictors show similar performance. Model 2 has the best AIC at -919.9073. Model 1 has the best BIC at **-**908.0097. Model 6 has the best adjusted R-squared at .1155997. Model 1 has the lowest RMSE at .01289857 but models, 4 and 5 are the next lowest with .02288133 and .02285259 and include lags 1,2,12dlnTotalPriv and lags 1,2 dlnWeekly. Model one just has l(1,2) dlnTotalPriv.
 
@@ -152,8 +115,8 @@ Figure 6 RW 90% and 99%
 
 This is the rolling windows forecast with 90% and 95% intervals for empirical and normal.
 
-Final Results
+## Final Results
 
-Conclusion
+**Conclusion**
 
 This project was complicated, but we are able to see and understand the data with time series models. With the summary statistics and AC/PAC plots the data was easier to understand and interpret. With the use of vselect I was able to identify several potential models for the variables to forecast. Next, with the use of those models, they were put into a rolling windows forecast to find the best window width. The plan was to forecast for March 2022, I still had some issues figuring out the rest after the rolling windows but I have a better understanding of time series.
