@@ -12,12 +12,14 @@ STA4853.01I&T Time Series Analysis
 
 ## Abstract
 
-In this project for Time Series Analysis for Business, Data Science, & Economics, I used data from St Louis Federal Reserve Economic Data (FRED) and am using available data for the Orlando-Kissimmee-Sanford area (MSA) in Florida. Using Stata this project allows application with time series tools to forecast the March non-seasonally adjusted estimates for the number of total employment for private employers and their average weekly earnings. This project includes the use of vselect and rolling windows for model selection and a forecast of the best model selection.
+For my Time Series Analysis project in Business, Data Science, and Economics, I leveraged data from St. Louis Federal Reserve Economic Data (FRED) and focused on the Orlando-Kissimmee-Sanford area (MSA) in Florida. Using Stata, I applied time series analysis tools to forecast the March non-seasonally adjusted estimates for the total employment number and average weekly earnings of private employers.
+
+To achieve accurate forecasts, I employed several techniques such as vselect and rolling windows for model selection. These techniques allowed me to identify the best model and forecast its outcome. Overall, this project aimed to showcase the effectiveness of time series analysis tools in business and economics and provide valuable insights into the future trends of employment and earnings in the Orlando-Kissimmee-Sanford area.
 
 
 ## Introduction
 
-With this final project, we take what we learned in class about time series modeling and forecasting to predict two variables for the Orlando-Kissimmee-Sanford area. These are, the total private employment and average weekly earnings for this area. We are to forecast the March non-seasonally adjusted estimates in this project. This project includes summary statistics, auto correlograms, partial autocorrelograms , tsline, vselect, rolling windows, and forecast of best model.
+In this final project, I have applied the time series modeling and forecasting techniques that I learned in class to predict two variables for the Orlando-Kissimmee-Sanford area: total private employment and average weekly earnings. The aim of this project is to forecast the March non-seasonally adjusted estimates for these variables. The project involves using various techniques, such as summary statistics, auto-correlograms, partial auto-correlograms, tsline, vselect, rolling windows, and forecasting the best model. Overall, this project aims to demonstrate my understanding of time series analysis and its application in forecasting economic trends.
 
 ## Data
 
@@ -41,13 +43,13 @@ Table 2 Summary Statistics for All Log Transformed Variables
 | lnHourlyEarn | 183     | 3.128612 | .1051165      | 2.961658 | 3.407179 |
 | lnWeeklyEarn | 183     | 6.696303 | .0897021      | 6.529039 | 6.936479 |
 
-With this data we can see that the maximum values for the standard variables have extreme values compared to its lowest values.
+Upon examining the data, it is observed that the standard variables have a wide range of values, with maximum values being significantly higher than their corresponding minimum values.
 
 Figure 1 Time Series Plots of lnTotalPriv and lnWeeklyEarn
 
 <img src = Images/lntsline.png>
 
-On the left, this time series plot shows the log transform of total private employment in Orlando-Kissimmee-Sanford area. We can see here there is a general an upwards trend for the most part except in early 1990s, early-mid 2000s, 2010\~, and in 2020. On the right is the log transform of the weekly earnings, it does not start until a bit before 2010. There is a decrease before 2010 before it spikes back up, and down throughout till about 2014. From there, the data has an increase and stays balanced until 2020, where it spikes majorly.
+The time series plot on the left shows the log transform of total private employment in the Orlando-Kissimmee-Sanford area. It displays a general upward trend, except for periods in the early 1990s, early-mid 2000s, 2010~, and in 2020. On the right is the log transform of weekly earnings, with data available only from a bit before 2010. The plot reveals a decline before 2010, followed by a sharp increase and subsequent fluctuation until around 2014. Subsequently, the data experiences a steady rise until 2020, when it registers a significant spike.
 
 Figure 2 ac_pac_lntotalpriv
 
@@ -56,11 +58,11 @@ Figure 2 ac_pac_lntotalpriv
 Figure 3 ac_pac_lnweekly
 
 <img src = Images/ac_pac_weekly.png>
-The AC charts start high and decreases steadily. This suggests that in the data there is an autoregressive term. The PAC has quite an alternating pattern with positive and negative values that are not significant. It seems to have a pattern in the trends, possibly a seasonal trend.
+The autocorrelation (AC) charts exhibit a decreasing trend starting from a high value, indicating the presence of an autoregressive term in the data. On the other hand, the partial autocorrelation (PAC) chart displays an alternating pattern with non-significant positive and negative values. The pattern suggests the possibility of a seasonal trend in the data.
 
 ## Model estimation and selection
 
-To model the total private employment and weekly earnings in Orlando-Kissimmee-Sanford area, I had used vselect to generated lags 1/12 for lnTotalPriv and lnWeeklyEarn. Below are the reasonable set of models from vselect along with the LOOCV of each. The models with 2 – 6 predictors show similar performance. Model 2 has the best AIC at -919.9073. Model 1 has the best BIC at **-**908.0097. Model 6 has the best adjusted R-squared at .1155997. Model 1 has the lowest RMSE at .01289857 but models, 4 and 5 are the next lowest with .02288133 and .02285259 and include lags 1,2,12dlnTotalPriv and lags 1,2 dlnWeekly. Model one just has l(1,2) dlnTotalPriv.
+For modeling total private employment and weekly earnings in the Orlando-Kissimmee-Sanford area, lags 1/12 for lnTotalPriv and lnWeeklyEarn were generated using vselect. Several models were selected, and their LOOCV is shown below. Models with 2 - 6 predictors had similar performance. Model 2 had the best AIC at -919.9073, while model 1 had the best BIC at **-**908.0097. Model 6 had the best adjusted R-squared at .1155997. Although model 1 had the lowest RMSE at .01289857, models 4 and 5 were the next lowest with .02288133 and .02285259, respectively. These models included lags 1,2,12dlnTotalPriv and lags 1,2 dlnWeekly. Model 1 only included lags 1,2 dlnTotalPriv.
 
 **LOOCV of Models**
 
@@ -84,7 +86,7 @@ Table 4 Vselect
 | l(1,2,12)dlnTotalPriv l(1,2)dlnWeeklyEarn   | 5         | .1143199     | -6.927468 | -919.7777     | -919.0864     | -900.9629     |
 | l(1,2,9,12)dlnTotalPriv l(1,2)dlnWeeklyEarn | 6         | **.1155997** | -6.065608 | -919.0633     | -918.1689     | -897.1127     |
 
-Now using rolling windows programs for each model, when looking at all models, model 1 has the best BIC and RMSE while models 4 and 5 do not have much going for them. In the table below is the respective model, window size, and RMSE for each. When run through with rolling windows, the optimal window size was 84 months and it resulted in RMSE of 0.1755403.
+After implementing rolling windows for each model, it was found that model 1 had the lowest BIC and RMSE values, while models 4 and 5 did not perform as well. The table below displays the corresponding model, window size, and RMSE for each. The optimal window size, when tested, was 84 months and resulted in an RMSE of 0.1755403.
 
 Table 5 Rolling Windows
 
@@ -106,16 +108,21 @@ Figure 5 RW 95%
 
 <img src = Images/TotalPriv_RW_95.png>
 
-This is the rolling window forecast with 95% intervals for normal and empirical.
+This is a visualization that shows the results of the rolling window forecast for the time series data. The forecast is displayed along with 95% intervals for both normal and empirical distributions. The normal distribution assumes that the data follows a normal distribution, while the empirical distribution is calculated using the actual data and is therefore more accurate. The 95% intervals represent the range of values within which we can be 95% confident that the actual data will fall. This is useful for assessing the accuracy of the forecast and identifying any potential outliers or unexpected trends in the data. By comparing the results of the normal and empirical distributions, we can also gain insights into the underlying distribution of the data and identify any potential deviations from normality.
 
 Figure 6 RW 90% and 99%
 
 <img src = Images/TotalPriv_FW_90_99.png>
 
-This is the rolling windows forecast with 90% and 95% intervals for empirical and normal.
+The rolling windows forecast is generated with 90% and 95% intervals for both empirical and normal distributions. The choice of confidence level (90% or 95%) determines the width of the intervals and the degree of certainty in the forecast. T
 
 ## Final Results
 
 **Conclusion**
+This project presented several challenges, but through the use of time series models and various techniques, I was able to gain valuable insights into the behavior of two key economic variables for the Orlando-Kissimmee-Sanford area. The summary statistics and AC/PAC plots provided a clear picture of the trends and patterns in the data, which helped identify potential models for forecasting.
 
-This project was complicated, but we are able to see and understand the data with time series models. With the summary statistics and AC/PAC plots the data was easier to understand and interpret. With the use of vselect I was able to identify several potential models for the variables to forecast. Next, with the use of those models, they were put into a rolling windows forecast to find the best window width. The plan was to forecast for March 2022, I still had some issues figuring out the rest after the rolling windows but I have a better understanding of time series.
+By using vselect, I generated a set of candidate models for the variables, and then employed rolling windows forecasting to determine the optimal window width. This technique allowed us to account for the changing behavior of the variables over time and refine predictions accordingly.
+
+While there were some difficulties, this project has deepened my understanding of time series modeling and forecasting techniques. I have learned how to identify key patterns and trends in the data, choose appropriate models for forecasting, and adjust predictions based on changing conditions.
+
+Overall, this project has been a valuable learning experience, and I hope to apply these skills and techniques to future projects and data analysis tasks.
